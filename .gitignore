@@ -1,0 +1,11 @@
+# Builds and local environments
+target/
+.venv/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+*.py[cod]
+
+# Local output and secrets
+.env*
+*.log
