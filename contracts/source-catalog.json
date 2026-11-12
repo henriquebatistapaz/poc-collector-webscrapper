@@ -1,0 +1,47 @@
+{
+  "catalogVersion": "1.0",
+  "liveCollectionDefault": false,
+  "sources": [
+    {
+      "slug": "hacker-news",
+      "name": "Hacker News",
+      "listingUrl": "https://news.ycombinator.com/news",
+      "detailUrlPattern": "https://news.ycombinator.com/item?id={nativeId}",
+      "allowedHost": "news.ycombinator.com",
+      "allowedDetailPath": "/item",
+      "nativeIdSelector": "tr.athing.submission[id]",
+      "itemLinkPolicy": "external story URL is output only and never fetched; use discussion permalink when absent",
+      "maxDetailPagesPerRun": 5,
+      "maxConcurrentPerHost": 1,
+      "minimumDelaySeconds": 30,
+      "robotsEvidence": "https://news.ycombinator.com/robots.txt (reviewed 2026-11-12): Crawl-delay 30; action routes excluded",
+      "termsEvidence": "https://news.ycombinator.com/newsfaq.html reviewed; no explicit automated read-only collection permission established",
+      "selectedForMvp": true,
+      "liveEnabled": false,
+      "reasonDisabled": "Terms/policy review did not establish affirmative permission; local fixtures only"
+    },
+    {
+      "slug": "wordpress-news",
+      "name": "WordPress News",
+      "listingUrl": "https://wordpress.org/news/",
+      "allowedHost": "wordpress.org",
+      "allowedPathPrefix": "/news/",
+      "nativeIdSelector": "article.post-<numeric-id>",
+      "itemLinkPolicy": "news permalink is item.link and sourcePageUrl",
+      "maxDetailPagesPerRun": 5,
+      "maxConcurrentPerHost": 1,
+      "minimumDelaySeconds": 5,
+      "robotsEvidence": "https://wordpress.org/robots.txt (reviewed 2026-11-12): news sitemap published; wp-admin disallowed; no crawl delay",
+      "termsEvidence": "https://wordpress.org/about/terms/ returned 404; no authoritative applicable terms page confirmed",
+      "selectedForMvp": true,
+      "liveEnabled": false,
+      "reasonDisabled": "Applicable terms/policy not confirmed; local fixtures only"
+    }
+  ],
+  "additionalCandidates": [
+    {"name": "Discussões Python", "url": "https://discuss.python.org/latest", "liveEnabled": false},
+    {"name": "Agência Brasil", "url": "https://agenciabrasil.ebc.com.br/", "liveEnabled": false},
+    {"name": "G1 Tecnologia", "url": "https://g1.globo.com/tecnologia/", "liveEnabled": false},
+    {"name": "Canaltech", "url": "https://canaltech.com.br/", "liveEnabled": false}
+  ]
+}
