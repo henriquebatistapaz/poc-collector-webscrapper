@@ -1,7 +1,7 @@
 import hashlib
 import re
 import unicodedata
-from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
+from urllib.parse import unquote_plus, urlsplit, urlunsplit
 
 from .safety import validate_output_url
 
@@ -14,11 +14,17 @@ def canonical_url(value: str) -> str:
     validate_output_url(value)
     parts = urlsplit(value)
     excluded = {"fbclid", "gclid", "mc_cid", "mc_eid"}
-    query = [(key, item) for key, item in parse_qsl(parts.query, keep_blank_values=True)
-             if not key.lower().startswith("utm_") and key.lower() not in excluded]
+    query = []
+    parameters = parts.query.split("&") if parts.query else []
+    while parameters and not parameters[-1]:
+        parameters.pop()
+    for parameter in parameters:
+        key = unquote_plus(parameter.split("=", 1)[0]).lower()
+        if not key.startswith("utm_") and key not in excluded:
+            query.append(parameter)
     host = (parts.hostname or "").lower()
     netloc = host + (f":{parts.port}" if parts.port else "")
-    return urlunsplit((parts.scheme.lower(), netloc, parts.path, urlencode(query), ""))
+    return urlunsplit((parts.scheme.lower(), netloc, parts.path, "&".join(query), ""))
 
 
 def fingerprint(source: str, title: str, published_at: str | None, author: str, url: str) -> str:
