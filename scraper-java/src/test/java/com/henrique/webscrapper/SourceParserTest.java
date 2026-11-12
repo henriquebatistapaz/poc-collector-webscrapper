@@ -78,6 +78,16 @@ class SourceParserTest {
   }
 
   @Test
+  void preservesEncodedQueryValuesInFingerprint() {
+    assertEquals("fingerprint:v1:00e3d77cd7f7bab110e8fd675cd0d3c7611c1fcc0005d447736f7e9cbc6aba92",
+        Identity.fingerprint("wordpress-news", "Exemplo", null, "Equipe",
+            "https://wordpress.org/news/exemplo/?q=a%20b&utm_source=x#sec"));
+    assertEquals("fingerprint:v1:00e3d77cd7f7bab110e8fd675cd0d3c7611c1fcc0005d447736f7e9cbc6aba92",
+        Identity.fingerprint("wordpress-news", "Exemplo", null, "Equipe",
+            "https://wordpress.org/news/exemplo/?q=a%20b&"));
+  }
+
+  @Test
   void deduplicatesTheEmittedBatchBySourceAndExternalId() throws Exception {
     var wordpressHtml = Files.readString(Path.of("../contracts/fixtures/wordpress-news-item.html"));
     var hackerNewsHtml = Files.readString(Path.of("../contracts/fixtures/hacker-news-item.html"))
