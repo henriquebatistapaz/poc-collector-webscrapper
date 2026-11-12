@@ -83,12 +83,24 @@ def test_fingerprint_and_source_scoped_deduplication():
     assert registry.add("a", "1")
     assert not registry.add("a", "1")
     assert registry.add("b", "1")
-
     wordpress = parse_page("wordpress-news", "https://wordpress.org/news/2026/11/exemplo/",
                            (FIXTURES / "wordpress-news-item.html").read_text())
     hacker_html = (FIXTURES / "hacker-news-item.html").read_text().replace("123456", "21967")
     hacker = parse_page("hacker-news", "https://news.ycombinator.com/item?id=21967", hacker_html)
     assert len(deduplicate_envelopes([wordpress, wordpress, hacker])) == 2
+
+
+def test_fingerprint_preserves_encoded_query_values_like_java():
+    from scraper_python.identity import fingerprint
+
+    assert fingerprint(
+        "wordpress-news", "Exemplo", None, "Equipe",
+        "https://wordpress.org/news/exemplo/?q=a%20b&utm_source=x#sec",
+    ) == "fingerprint:v1:00e3d77cd7f7bab110e8fd675cd0d3c7611c1fcc0005d447736f7e9cbc6aba92"
+    assert fingerprint(
+        "wordpress-news", "Exemplo", None, "Equipe",
+        "https://wordpress.org/news/exemplo/?q=a%20b&",
+    ) == "fingerprint:v1:00e3d77cd7f7bab110e8fd675cd0d3c7611c1fcc0005d447736f7e9cbc6aba92"
 
 
 def test_cli_emits_duplicate_source_item_once(tmp_path, capsys, monkeypatch):
