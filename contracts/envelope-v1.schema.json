@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/henriquebatistapaz/poc-collector-webscrapper/contracts/envelope-v1.schema.json",
+  "title": "Collected item envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "collectedAt", "sourcePageUrl", "item", "entities"],
+  "properties": {
+    "schemaVersion": {"const": "1.0"},
+    "collectedAt": {"type": "string", "format": "date-time"},
+    "sourcePageUrl": {"type": "string", "format": "uri", "maxLength": 2000},
+    "item": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source", "externalId", "title", "link", "publishedAt"],
+      "properties": {
+        "source": {"type": "string", "minLength": 1, "maxLength": 40},
+        "externalId": {"type": "string", "minLength": 1, "maxLength": 2000},
+        "title": {"type": "string", "minLength": 1, "maxLength": 1000},
+        "link": {"type": "string", "format": "uri", "maxLength": 2000},
+        "publishedAt": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "entities": {"type": "array", "items": {"type": "object"}}
+  }
+}
