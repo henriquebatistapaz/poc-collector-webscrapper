@@ -1,4 +1,4 @@
-package dev.henrique.webscrapper;
+package dev.henrique.collectorwebscrapper;
 
 import java.util.HashSet;
 import java.util.Set;

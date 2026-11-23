@@ -1,4 +1,4 @@
-package dev.henrique.webscrapper;
+package dev.henrique.collectorwebscrapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.nio.file.Files;
@@ -10,7 +10,7 @@ public final class Main {
   private Main() {}
   public static void main(String[] args) throws Exception {
     if (args.length < 4 || (args.length - 2) % 2 != 0 || !args[0].equals("parse")) {
-      System.err.println("Usage: mvn exec:java -Dexec.mainClass=dev.henrique.webscrapper.Main -Dexec.args='parse <source> <source-page-url> <html-file> [<source-page-url> <html-file> ...]'");
+      System.err.println("Usage: mvn exec:java -Dexec.mainClass=dev.henrique.collectorwebscrapper.Main -Dexec.args='parse <source> <source-page-url> <html-file> [<source-page-url> <html-file> ...]'");
       System.exit(2);
     }
     List<CollectedEnvelope> parsed = new ArrayList<>();
