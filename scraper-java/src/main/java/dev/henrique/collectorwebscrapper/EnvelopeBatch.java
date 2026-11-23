@@ -1,4 +1,4 @@
-package com.henrique.webscrapper;
+package dev.henrique.collectorwebscrapper;
 
 import java.util.ArrayList;
 import java.util.List;
