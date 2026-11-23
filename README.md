@@ -9,7 +9,7 @@ As fontes Hacker News e WordPress News estão catalogadas, mas a coleta ao vivo 
 ```bash
 cd scraper-java
 mvn -B -ntp verify
-mvn -q exec:java -Dexec.mainClass=dev.henrique.webscrapper.Main -Dexec.args="parse hacker-news https://news.ycombinator.com/item?id=123456 ../contracts/fixtures/hacker-news-item.html https://news.ycombinator.com/item?id=123456 ../contracts/fixtures/hacker-news-item.html"
+mvn -q exec:java -Dexec.mainClass=dev.henrique.collectorwebscrapper.Main -Dexec.args="parse hacker-news https://news.ycombinator.com/item?id=123456 ../contracts/fixtures/hacker-news-item.html https://news.ycombinator.com/item?id=123456 ../contracts/fixtures/hacker-news-item.html"
 ```
 
 ## Python
