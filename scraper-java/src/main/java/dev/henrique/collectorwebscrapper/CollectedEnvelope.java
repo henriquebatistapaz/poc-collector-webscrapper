@@ -1,4 +1,4 @@
-package dev.henrique.webscrapper;
+package dev.henrique.collectorwebscrapper;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
