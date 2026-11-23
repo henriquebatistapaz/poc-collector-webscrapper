@@ -1,4 +1,4 @@
-package com.henrique.webscrapper;
+package dev.henrique.webscrapper;
 
 import static org.junit.jupiter.api.Assertions.*;
 
