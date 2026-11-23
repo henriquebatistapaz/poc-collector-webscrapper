@@ -25,4 +25,3 @@ python3.12 -m venv .venv
 
 Cada execução aceita pares de página URL/arquivo local e produz um envelope por linha JSONL, deduplicado por `(source, externalId)` dentro do lote. Texto integral e comentários existem apenas no objeto transitório em memória e não são serializados nem registrados. O link externo do Hacker News é preservado no item e nunca consultado. As verificações são locais; o projeto não configura GitHub Actions.
 
-O contexto AI-init canônico e as specs ficam no repositório sibling `ai-init-internal/poc-collector-webscrapper`; esses arquivos geridos não são versionados neste projeto (`versioned: false`).
