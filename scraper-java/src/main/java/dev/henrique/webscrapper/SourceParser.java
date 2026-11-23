@@ -1,4 +1,4 @@
-package com.henrique.webscrapper;
+package dev.henrique.webscrapper;
 
 import java.time.Instant;
 import java.util.ArrayList;

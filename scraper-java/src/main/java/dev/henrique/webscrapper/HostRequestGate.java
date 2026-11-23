@@ -1,4 +1,4 @@
-package com.henrique.webscrapper;
+package dev.henrique.webscrapper;
 
 import java.net.URI;
 import java.util.concurrent.ConcurrentHashMap;
