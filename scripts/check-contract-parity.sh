@@ -18,7 +18,7 @@ for source in hacker-news wordpress-news; do
     page="$fixture/wordpress-news-item.html"
   fi
   (cd "$java_module" && mvn -q exec:java \
-    -Dexec.mainClass=com.henrique.webscrapper.Main \
+    -Dexec.mainClass=dev.henrique.webscrapper.Main \
     -Dexec.args="parse $source $url ../contracts/fixtures/$(basename "$page")") > "$tmp/java-$source.jsonl"
   (cd "$python_module" && .venv/bin/python -m scraper_python.main \
     --source "$source" --url "$url" --input "$page") > "$tmp/python-$source.jsonl"
